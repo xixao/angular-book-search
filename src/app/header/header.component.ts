@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SharedService } from '../shared-service.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {  
+  searchTerm: string = '';
 
-  constructor() { }
+  constructor(private _sharedService: SharedService) { }
 
-  ngOnInit() {
+  doSearch() {
+  	this._sharedService.updateSearchTerm(this.searchTerm);
   }
 
 }

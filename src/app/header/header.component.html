@@ -2,8 +2,8 @@
   <div class="container">
     <span class="logo">Book Search</span>
     <div id="search">
-      <input ng-model="searchTerm">
-      <button ng-click="doSearch()">Search</button>
+      <input [(ngModel)]="searchTerm">
+      <button (click)="doSearch()">Search</button>
     </div>
   </div>
 </header>

@@ -1,7 +1,11 @@
 <div class="container">
-	<p *ngIf="!query; else searchResults" class="text-center">Please use the text box above to search Google Books.</p>
+	<p *ngIf="!searchTerm; else searchResults" class="text-center">Please use the text box above to search Google Books.</p>
 </div>
 
 <ng-template #searchResults>
+	<p>Searching for term: {{searchTerm}} ({{numResults}} results)</p>
 
+	<ul *ngFor="let book of books">
+		<li>{{book.volumeInfo.title}}</li>
+	</ul>
 </ng-template>
