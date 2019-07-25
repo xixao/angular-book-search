@@ -3,9 +3,15 @@
 </div>
 
 <ng-template #searchResults>
-	<p>Searching for term: {{searchTerm}} ({{numResults}} results)</p>
+	<p>Searching for term: {{searchTerm}}</p>
 
-	<ul *ngFor="let book of books">
-		<li>{{book.volumeInfo.title}}</li>
-	</ul>
+	<div *ngFor="let book of books" class="book">
+		<img [src]="book.volumeInfo.imageLinks.smallThumbnail" [alt]="book.volumeInfo.title" class="thumb" />
+		<div class="details">
+			<span class="title">{{book.volumeInfo.title}}</span>
+			<span *ngIf="book.volumeInfo.authors" class="author">by {{book.volumeInfo.authors.join()}}</span>
+		</div>
+	</div>
+
+	<p>Search returned {{numResults}} resuts. Completed in {{responseTime}} ms.</p>
 </ng-template>
