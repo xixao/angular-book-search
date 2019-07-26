@@ -1,0 +1,12 @@
+<div class="book">
+	<img *ngIf="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail" [src]="book.volumeInfo.imageLinks.smallThumbnail" [alt]="book.volumeInfo.title" class="thumb" />
+	<div class="details">
+		<span class="title">{{book.volumeInfo.title}}</span>
+		<span *ngIf="book.volumeInfo.authors" class="author">by {{book.volumeInfo.authors.join()}}</span>
+
+		<span *ngIf="book.volumeInfo.categories" class="categories">In {{book.volumeInfo.categories.join()}}</span>
+		<span *ngIf="book.volumeInfo.description" [class]="expandDescription ? 'description' : 'description-trunc'" (click)="toggleDescription()" title="Click to expand/collapse description">{{book.volumeInfo.description}}</span>
+
+		<a *ngIf="book.volumeInfo.previewLink" [attr.href]="book.volumeInfo.previewLink" class="preview-link" target="_blank">[ Preview ]</a>
+	</div>
+</div>

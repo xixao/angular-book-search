@@ -5,13 +5,17 @@
 <ng-template #searchResults>
 	<p>Searching for term: {{searchTerm}}</p>
 
-	<div *ngFor="let book of books" class="book">
-		<img [src]="book.volumeInfo.imageLinks.smallThumbnail" [alt]="book.volumeInfo.title" class="thumb" />
-		<div class="details">
-			<span class="title">{{book.volumeInfo.title}}</span>
-			<span *ngIf="book.volumeInfo.authors" class="author">by {{book.volumeInfo.authors.join()}}</span>
-		</div>
+	<ng-container *ngFor="let book of books">
+		<app-book-item [book]="book"></app-book-item>
+	</ng-container>
+
+	<div class="pagination">
+		<button (click)="firstPage()" [disabled]="currentPage === 1">&#8676;</button>
+		<button (click)="prevPage()" [disabled]="currentPage === 1">&#8592;</button>
+		<span>Displaying results {{minNumResults}} - {{maxNumResults}} (Page {{currentPage}} of {{numberOfPages}})</span>
+		<button (click)="nextPage()" [disabled]="currentPage === numberOfPages">&#8594;</button>
+		<button (click)="lastPage()" [disabled]="currentPage === numberOfPages">&#8677;</button>
 	</div>
 
-	<p>Search returned {{numResults}} resuts. Completed in {{responseTime}} ms.</p>
+	<p class="text-center">Search returned {{numResults}} resuts. Completed in {{responseTime}} ms.</p>
 </ng-template>

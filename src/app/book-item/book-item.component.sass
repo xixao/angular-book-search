@@ -1,0 +1,62 @@
+.book
+    display: grid
+    grid-template-columns: 30% auto
+    padding: 1em 3em
+    background: #efefef
+    border-radius: 15px
+    margin-bottom: 2em
+
+    .thumb
+        border: 1px solid black
+        padding: 6px
+        border-radius: 3px
+        box-shadow: -5px 5px 5px 0px rgba(0,0,0,0.5)
+
+    .details
+        .title
+            font-style: italic
+            font-size: 1.4em
+            display: block
+
+        .author
+            font-size: .8em
+            display: block
+
+        .categories
+            margin-top: 2em
+            display: block
+
+        .description
+            display: block
+            margin-top: 2em
+
+        .description-trunc
+            display: block
+            margin-top: 2em
+            height: 4em
+            overflow: hidden
+            position: relative
+            line-height: 1.2em
+            max-height: 3.6em
+            text-align: justify
+            margin-right: -1em
+            padding-right: 1em
+
+            &:before
+                content: '...'
+                position: absolute
+                right: 0
+                bottom: 0
+
+            &:after
+                content: ''
+                position: absolute
+                right: 0
+                width: 1em
+                height: 1em
+                margin-top: 0.2em
+                background: #efefef
+
+        .preview-link
+            display: block
+            margin-top: 2em
