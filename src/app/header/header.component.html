@@ -2,7 +2,7 @@
   <div class="container">
     <span class="logo">Book Search</span>
     <div id="search">
-      <input [(ngModel)]="searchTerm">
+      <input [(ngModel)]="searchTerm" (keydown.enter)="doSearch()">
       <button (click)="doSearch()">Search</button>
     </div>
   </div>

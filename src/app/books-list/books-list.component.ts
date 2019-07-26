@@ -20,12 +20,13 @@ export class BooksListComponent implements OnInit {
   constructor(private _sharedService : SharedService) { }
 
   ngOnInit() {
+    // Fetch non-result data
   	this._sharedService.numberOfResults.subscribe(numResults => {
   		this.numResults = numResults;
-  		this.responseTime = this._sharedService.lastResponseTime;
   		this.searchTerm = this._sharedService.searchTerm;
   	});
 
+    // Gather search results
   	this._sharedService.books.subscribe(books => {
   		this.books = books;
   		this.currentPage = this._sharedService.currentPage;
@@ -35,12 +36,15 @@ export class BooksListComponent implements OnInit {
   		this.minNumResults = (this.currentPage - 1) * this.resultsPerPage;
   		this.maxNumResults = this.minNumResults + this.books.length;
 
+      // Prevent displaying "Page 0 of ..."
   		if (this.minNumResults == 0) this.minNumResults = 1;
-  	});
 
-  	console.log(this.books);
+      this.responseTime = this._sharedService.lastResponseTime;
+  	});
   }
 
+
+  // Pagination functions
   firstPage() {
   	this._sharedService.changePage(1);
   }

@@ -17,6 +17,7 @@ export class BookItemComponent implements OnInit {
   }
 
   toggleDescription() {
+    // Toggle expanded view of description
   	this.expandDescription = !this.expandDescription;
   }
 

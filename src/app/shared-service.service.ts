@@ -25,6 +25,7 @@ export class SharedService {
 
   constructor(private http: HttpClient) { }
 
+  // Reset parameters and send search term to API call
   updateSearchTerm(data: string) {
     this.searchTerm = data;
     this.currentPage = 1;
@@ -33,25 +34,31 @@ export class SharedService {
     this.performSearch();
   }
 
+  // Perform our search
   performSearch() {
+    // Store start time in memory for response time calculation
   	let startTime = new Date().getTime();
 
   	this.SearchBooks().subscribe((res) => {
+      // Compare current time to start time and calculate server response
   	  this.lastResponseTime = new Date().getTime() - startTime;
-      console.log('Book subscriber', res);
 
+      // Determine number of results and pages
       this.numberOfResults.next(res.totalItems);
       this.numPages = Math.ceil(res.totalItems / this.maxResults);
 
+      // Store results
       this.books.next(res.items);
     });
   }
 
+  // API call
   SearchBooks() {
     return this.http
       .get(`${this.API_PATH}?orderBy=newest&q=${this.searchTerm}&startIndex=${this.startIndex}&maxResults=${this.maxResults}`)
   }
 
+  // Fetch results based on page number (pagination)
   changePage(pageNum: number) {
   	this.currentPage = pageNum;
   	this.startIndex = (pageNum - 1) * this.maxResults;

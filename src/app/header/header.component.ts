@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   constructor(private _sharedService: SharedService) { }
 
+  // Click handler for search button
   doSearch() {
   	this._sharedService.updateSearchTerm(this.searchTerm);
   }
